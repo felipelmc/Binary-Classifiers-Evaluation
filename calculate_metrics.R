@@ -1,8 +1,8 @@
 library(pROC)
 
-calculate_metrics <- function(model, response_variable, threshold) {
+calculate_metrics <- function(model, test_data, response_variable, threshold) {
   # Make predictions
-  predictions_prob <- predict(model, type = "response")
+  predictions_prob <- predict(model, newdata = test_data, type = "response")
   predictions <- ifelse(predictions_prob > threshold, 1, 0)
   
   # Create confusion matrix
